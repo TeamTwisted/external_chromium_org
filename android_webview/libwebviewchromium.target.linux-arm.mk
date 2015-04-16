@@ -431,6 +431,10 @@ MY_CFLAGS_Debug := \
 	-ffunction-sections \
 	-fomit-frame-pointer \
 	-funwind-tables
+ifeq ($(filter -fprefetch-loop-arrays,$(LOCAL_CFLAGS)),)
+MY_CFLAGS_Debug += \
+	-Os
+endif
 
 MY_DEFS_Debug := \
 	'-DV8_DEPRECATION_WARNINGS' \
