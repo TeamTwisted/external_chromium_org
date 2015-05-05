@@ -170,7 +170,7 @@ jclass LazyGetClass(
     return reinterpret_cast<jclass>(value);
   ScopedJavaGlobalRef<jclass> clazz;
   clazz.Reset(GetClass(env, class_name));
-  subtle::AtomicWord null_aw = reinterpret_cast<subtle::AtomicWord>(NULL);
+  subtle::AtomicWord null_aw = static_cast<subtle::AtomicWord>(NULL);
   subtle::AtomicWord cas_result = base::subtle::Release_CompareAndSwap(
       atomic_class_id,
       null_aw,
